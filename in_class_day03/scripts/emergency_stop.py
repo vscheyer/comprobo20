@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Created on 29 July 2012
@@ -13,9 +13,9 @@ from geometry_msgs.msg import Twist, Vector3
 class EmergencyStopNode(object):
     def __init__(self):
         rospy.init_node('emergency_stop')
-        rospy.Subscriber('/bump', Bump, self.process_bump)
+        rospy.Subscriber('/bump', Bump, self.process_bump(Bump))
         self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
-        self.desired_velocity = 0.3
+        self.desired_velocity = 0.0
 
     def process_bump(self, msg):
         if any((msg.leftFront, msg.leftSide, msg.rightFront, msg.rightSide)):
